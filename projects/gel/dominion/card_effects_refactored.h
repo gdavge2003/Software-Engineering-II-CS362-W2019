@@ -3,7 +3,7 @@
 
 #include "dominion.h"
 
-int adventurerEffect(struct gameState *state, int currentPlayer);
+int adventurerEffect(struct gameState *state, int currentPlayer, int handPos);
 int smithyEffect(struct gameState *state, int currentPlayer, int handPos);
 int villageEffect(struct gameState *state, int currentPlayer, int handPos);
 int council_roomEffect(struct gameState *state, int currentPlayer, int handPos);

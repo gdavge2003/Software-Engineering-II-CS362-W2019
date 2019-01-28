@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 // adventurer card effect
-int adventurerEffect(struct gameState *state, int currentPlayer) {
+int adventurerEffect(struct gameState *state, int currentPlayer, int handPos) {
     int drawntreasure = 0;
     int cardDrawn;
     int temphand[MAX_HAND];
@@ -39,6 +39,9 @@ int adventurerEffect(struct gameState *state, int currentPlayer) {
         state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[temphandCounter-1];
         temphandCounter--;
     }
+
+    // discard this played card
+    discardCard(handPos, currentPlayer, state, 0);
 
     return 0;
 }
