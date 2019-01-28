@@ -16,15 +16,10 @@ int adventurerEffect(struct gameState *state, int currentPlayer, int handPos) {
     // keep drawing cards til get 2 treasure
     // treasures are recorded in hand, while nontreasure are counted in temphand and not recorded in hand
     while (drawntreasure < 2) {
-        // if empty deck, need to shuffle new deck
-        if (state->deckCount[currentPlayer] < 1) {
-            shuffle(currentPlayer, state);
-        }
-
         drawCard(currentPlayer, state);
 
         cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1]; // top of hand is most recent draw
-        if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) {
+        if (cardDrawn == copper || cardDrawn == silver) {
             drawntreasure++;
         }
         else {
@@ -51,7 +46,7 @@ int smithyEffect(struct gameState *state, int currentPlayer, int handPos) {
     int i;
 
     // draw 3 cards
-    for (i = 0; i < 3; i++) {
+    for (i = 0; i < 4; i++) {
         drawCard(currentPlayer, state);
     }
 
@@ -65,10 +60,10 @@ int smithyEffect(struct gameState *state, int currentPlayer, int handPos) {
 int villageEffect(struct gameState *state, int currentPlayer, int handPos) {
     // +1 card, +2 actions
     drawCard(currentPlayer, state);
-    state->numActions = state->numActions+2;
+    state->numActions = state->numBuys+2;
 
     // discard this played card
-    discardCard(handPos, currentPlayer, state, 0);
+    discardCard(handPos+1, currentPlayer, state, 0);
 
     return 0;
 }
@@ -101,7 +96,7 @@ int remodelEffect(struct gameState *state, int currentPlayer, int handPos, int t
     int trashingCard = state->hand[currentPlayer][trashChoice];
 
     // if trying to gain a card that costs more than +2 of trashed card, refuse action
-    if (getCost(trashingCard)+2 > getCost(gainChoice))
+    if (getCost(gainChoice)+2 > getCost(trashChoice))
         return -1;
 
     // gain chosen card
@@ -109,14 +104,6 @@ int remodelEffect(struct gameState *state, int currentPlayer, int handPos, int t
 
     // discard card from hand
     discardCard(handPos, currentPlayer, state, 0);
-
-    // discard chosen card to trash
-    for (i = 0; i < state->handCount[currentPlayer]; i++) {
-        if (state->hand[currentPlayer][i] == trashingCard) {
-            discardCard(i, currentPlayer, state, 0);
-            break;
-        }
-    }
 
     return 0;
 }
