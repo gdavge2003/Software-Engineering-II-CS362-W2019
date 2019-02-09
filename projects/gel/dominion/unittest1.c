@@ -35,7 +35,46 @@ int main() {
     printf("Expected coins: 0, Actual coins: %d\n", state->coins);
     assert(state->coins == 0);
 
+    printf("\n** Test 2: coins and bonus correctly calculated **\n");
+    // arrange mock data
+    state->hand[player][0] = copper;
+    state->hand[player][1] = silver;
+    state->hand[player][2] = gold;
+    int bonus = 5;
 
+    // act
+    updateCoins(player, state, bonus);
+
+    // assert
+    printf("Expected coins: %d, Actual coins: %d\n", 1+2+3+bonus, state->coins);
+    assert(state->coins == (1+2+3+bonus));
+
+    printf("\n** Test 3: multiple iterations on same coin correctly calculated **\n");
+    // arrange mock data
+    state->hand[player][0] = gold;
+    state->hand[player][1] = gold;
+    state->hand[player][2] = gold;
+
+    // act
+    updateCoins(player, state, 0);
+
+    // assert
+    printf("Expected coins: %d, Actual coins: %d\n", 3+3+3, state->coins);
+    assert(state->coins == 9);
+
+    printf("\n** Test 4: hand size should remain the same **\n");
+    // arrange mock data
+    state->hand[player][0] = gold;
+    state->hand[player][1] = province;
+    state->hand[player][2] = steward;
+
+    // act
+    updateCoins(player, state, 0);
+
+    // assert
+    printf("Expected coins: %d, Actual coins: %d\n", 3, state->coins);
+    assert(state->coins == 3);
+    printf("Expected hand size: %d, Actual hand size: %d\n", 3, state->handCount[player]);
 
     free(state);
     return 0;
