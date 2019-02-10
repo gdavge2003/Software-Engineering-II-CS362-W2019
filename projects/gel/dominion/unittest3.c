@@ -29,8 +29,9 @@ int main() {
 
     // assert
     printf("Expected whoseTurn: 0, Actual whoseTurn result: %d\n", result);
-    assert(result == 1);
+    assert(result == 0);
 
+    // clean up
     free(state);
     return 0;
 }
