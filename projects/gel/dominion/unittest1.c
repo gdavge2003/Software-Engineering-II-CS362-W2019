@@ -21,6 +21,7 @@ int main() {
 
     printf("\n** Unit Testing for updateCoins() **\n");
 
+    // Test --------------------------------------------------
     printf("\n** Test 1: correctly resets & no coins **\n");
     // arrange mock data
     state->coins = 5;
@@ -35,6 +36,7 @@ int main() {
     printf("Expected coins: 0, Actual coins: %d\n", state->coins);
     assert(state->coins == 0);
 
+    // Test --------------------------------------------------
     printf("\n** Test 2: coins and bonus correctly calculated **\n");
     // arrange mock data
     state->hand[player][0] = copper;
@@ -49,6 +51,7 @@ int main() {
     printf("Expected coins: %d, Actual coins: %d\n", 1+2+3+bonus, state->coins);
     assert(state->coins == (1+2+3+bonus));
 
+    // Test --------------------------------------------------
     printf("\n** Test 3: multiple iterations on same coin correctly calculated **\n");
     // arrange mock data
     state->hand[player][0] = gold;
@@ -62,6 +65,7 @@ int main() {
     printf("Expected coins: %d, Actual coins: %d\n", 3+3+3, state->coins);
     assert(state->coins == 9);
 
+    // Test --------------------------------------------------
     printf("\n** Test 4: hand size should remain the same **\n");
     // arrange mock data
     state->hand[player][0] = gold;
