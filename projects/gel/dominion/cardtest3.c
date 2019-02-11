@@ -1,5 +1,5 @@
 /* -----------------------------------------------------------------------
- * Unit Card Test 1 - testing smithy
+ * Unit Card Test 3 - testing council_room
  * -----------------------------------------------------------------------
  */
 #include "dominion.h"
@@ -24,16 +24,17 @@ int main () {
     int opponent = 1;
 
     state->whoseTurn = player;
-    state->hand[player][0] = smithy;
+    state->hand[player][0] = council_room;
     state->handCount[player]++; // note: as of this assignment initialize game doesn't draw cards
     int handPos = 0;
 
-    printf("\nCard Test Suite for Smithy\n");
+    printf("\nCard Test Suite for Council Room\n");
 
     // before data for assertions
-    int beforeHandCount = state->handCount[player];
+    int beforeHandCount = state->handCount[player]; // player should have 10 cards after initialization
     int beforeDeckCount = state->deckCount[player];
     int beforeDiscardCount = state->discardCount[player];
+    int beforeBuyCount = state->numBuys = 1;
 
     int beforeHandCountOpponent = state->handCount[opponent];
     int beforeDeckCountOpponent = state->deckCount[opponent];
@@ -44,7 +45,7 @@ int main () {
         beforeSupplyCount[i] = state->supplyCount[k[i]];
 
     // act
-    result = cardEffect(smithy, 0, 0, 0, state, handPos, 0);
+    result = cardEffect(council_room, 0, 0, 0, state, handPos, 0);
 
     // assert
     //test ---------------------------
@@ -53,35 +54,42 @@ int main () {
     assert(result == 0);
 
     //test ---------------------------
-    printf("\n** Test 2: player draws 3 cards to hand and discards played card **\n");
-    printf("Expected hand size: %d. Actual hand size: %d\n", beforeHandCount+3-1, state->handCount[player]);
-    assert(beforeHandCount+3-1 == state->handCount[player]);
+    printf("\n** Test 2: player draws 4 card to hand and discards played card **\n");
+    printf("Expected hand size: %d. Actual hand size: %d\n", beforeHandCount+4-1, state->handCount[player]);
+    assert(beforeHandCount+4-1 == state->handCount[player]);
 
     //test ---------------------------
-    printf("\n** Test 3: player draws 3 cards from deck **\n");
-    printf("Expected deck size: %d. Actual deck size: %d\n", beforeDeckCount-3, state->deckCount[player]);
-    assert(beforeDeckCount-3 == state->deckCount[player]);
+    printf("\n** Test 3: player draws 4 card from deck **\n");
+    printf("Expected deck size: %d. Actual deck size: %d\n", beforeDeckCount-4, state->deckCount[player]);
+    assert(beforeDeckCount-4 == state->deckCount[player]);
 
     //test ---------------------------
-    printf("\n** Test 4: player's discard pile now has played card **\n");
+    printf("\n** Test 4: player discard pile now has played card **\n");
     printf("Expected discard size: %d. Actual discard size: %d\n", beforeDiscardCount+1, state->discardCount[player]);
     assert(beforeDiscardCount+1 == state->discardCount[player]);
 
     //test ---------------------------
-    printf("\n** Test 5: kingdom cards are not affected **\n");
+    printf("\n** Test 5: player gains a buy **\n");
+    printf("Expected player buy(s): %d. Actual buy(s): %d\n", beforeBuyCount+1, state->numBuys);
+    assert(beforeBuyCount+1 == state->numActions);
+
+    //test ---------------------------
+    printf("\n** Test 6: kingdom cards are not affected **\n");
     for (i = 0; i < 10; i++) {
         printf("Kingdom card #%d expected count: %d. Actual count: %d\n", k[i], beforeSupplyCount[i], state->supplyCount[k[i]]);
         assert(beforeSupplyCount[i] == state->supplyCount[k[i]]);
     }
 
     //test ---------------------------
-    printf("\n** Test 6: opponent state does not change **\n");
-    printf("Expected opponent hand size: %d. Actual hand size: %d\n", beforeHandCountOpponent, state->handCount[opponent]);
-    assert(beforeHandCountOpponent == state->handCount[opponent]);
+    printf("\n** Test 7: opponent draws a card and state changes **\n");
+    printf("Expected opponent hand size: %d. Actual hand size: %d\n", beforeHandCountOpponent+1, state->handCount[opponent]);
+    assert(beforeHandCountOpponent+1 == state->handCount[opponent]);
 
-    printf("Expected opponent deck size: %d. Actual deck size: %d\n", beforeDeckCountOpponent, state->deckCount[opponent]);
-    assert(beforeDeckCountOpponent == state->deckCount[opponent]);
+    printf("Expected opponent deck size: %d. Actual deck size: %d\n", beforeDeckCountOpponent-1, state->deckCount[opponent]);
+    assert(beforeDeckCountOpponent-1 == state->deckCount[opponent]);
 
+    //test ---------------------------
+    printf("\n** Test 8: opponent does not discard any card **\n");
     printf("Expected opponent discard size: %d. Actual discard size: %d\n", beforeDiscardCountOpponent, state->discardCount[opponent]);
     assert(beforeDiscardCountOpponent == state->discardCount[opponent]);
 }
