@@ -15,6 +15,13 @@
 #include <stdlib.h>
 
 
+void assertValues(int a, int b) {
+    if (a == b)
+        printf("TEST PASSED\n");
+    else
+        printf("TEST FAILED\n");
+}
+
 int main() {
     // setup mocked data needed for each test
     int* result;
@@ -55,7 +62,7 @@ int main() {
     // assert
     for (i = 0; i < 10; i++) {
         printf("Expected card id: %d, Actual card id: %d\n", k[i], result[i]);
-        assert(k[i] == result[i]);
+        assertValues(k[i], result[i]);
     }
 
     // cleanup

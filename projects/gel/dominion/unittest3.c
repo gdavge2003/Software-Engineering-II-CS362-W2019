@@ -12,6 +12,13 @@
 #include <stdlib.h>
 
 
+void assertValues(int a, int b) {
+    if (a == b)
+        printf("TEST PASSED\n");
+    else
+        printf("TEST FAILED\n");
+}
+
 int main() {
     // setup mocked data needed for each test
     struct gameState *state = malloc(sizeof(struct gameState));
@@ -29,7 +36,7 @@ int main() {
 
     // assert
     printf("Expected whoseTurn: 0, Actual whoseTurn result: %d\n", result);
-    assert(result == 0);
+    assertValues(result, 0);
 
     // clean up
     free(state);

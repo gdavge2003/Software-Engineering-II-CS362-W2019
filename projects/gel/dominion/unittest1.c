@@ -12,6 +12,13 @@
 #include <stdlib.h>
 
 
+void assertValues(int a, int b) {
+    if (a == b)
+        printf("TEST PASSED\n");
+    else
+        printf("TEST FAILED\n");
+}
+
 int main() {
     // setup mocked data needed for each test
     struct gameState *state = malloc(sizeof(struct gameState));
@@ -34,7 +41,7 @@ int main() {
 
     // assert
     printf("Expected coins: 0, Actual coins: %d\n", state->coins);
-    assert(state->coins == 0);
+    assertValues(state->coins, 0);
 
     // Test --------------------------------------------------
     printf("\n** Test 2: coins and bonus correctly calculated **\n");
@@ -49,7 +56,7 @@ int main() {
 
     // assert
     printf("Expected coins: %d, Actual coins: %d\n", 1+2+3+bonus, state->coins);
-    assert(state->coins == (1+2+3+bonus));
+    assertValues(state->coins, (1+2+3+bonus));
 
     // Test --------------------------------------------------
     printf("\n** Test 3: multiple iterations on same coin correctly calculated **\n");
@@ -63,7 +70,7 @@ int main() {
 
     // assert
     printf("Expected coins: %d, Actual coins: %d\n", 3+3+3, state->coins);
-    assert(state->coins == 9);
+    assertValues(state->coins, 9);
 
     // Test --------------------------------------------------
     printf("\n** Test 4: hand size should remain the same **\n");
@@ -77,8 +84,9 @@ int main() {
 
     // assert
     printf("Expected coins: %d, Actual coins: %d\n", 3, state->coins);
-    assert(state->coins == 3);
+    assertValues(state->coins, 3);
     printf("Expected hand size: %d, Actual hand size: %d\n", 3, state->handCount[player]);
+    assertValues(state->handCount[player], 3);
 
     free(state);
     return 0;
