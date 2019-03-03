@@ -64,6 +64,4 @@ runrandomtests:
 	cat dominion.c.gcov >> randomtestadventurer.out
 
 randomtestresults:
-	rm -f randomtestresults.out
-	touch randomtestresults.out
 	make runrandomtests

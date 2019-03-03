@@ -2,7 +2,7 @@
 Running random generator tests for village...
 # of Tests Ran: 100000
 # of Tests Passed: 0
-# of Cards Drawn Miscount: 224
+# of Cards Drawn Miscount: 186
 # of Deck Size Miscount: 0
 # of Played Cards Miscount: 0
 # of Action Miscount: 100000
@@ -220,12 +220,12 @@ dominion.c:creating 'dominion.c.gcov'
         -:  202:
         -:  203:
         -:  204:  int newDeck[MAX_DECK];
-   200224:  205:  int newDeckPos = 0;
+   200186:  205:  int newDeckPos = 0;
         -:  206:  int card;
         -:  207:  int i;
         -:  208:
-   200224:  209:  if (state->deckCount[player] < 1)
-      224:  210:    return -1;
+   200186:  209:  if (state->deckCount[player] < 1)
+      186:  210:    return -1;
    200000:  211:  qsort ((void*)(state->deck[player]), state->deckCount[player], sizeof(int), compare);
         -:  212:  /* SORT CARDS IN DECK TO ENSURE DETERMINISM! */
         -:  213:
@@ -233,9 +233,9 @@ dominion.c:creating 'dominion.c.gcov'
   2000000:  215:    card = floor(Random() * state->deckCount[player]);
   2000000:  216:    newDeck[newDeckPos] = state->deck[player][card];
   2000000:  217:    newDeckPos++;
- 13600000:  218:    for (i = card; i < state->deckCount[player]-1; i++) {
-  4800000:  219:      state->deck[player][i] = state->deck[player][i+1];
-  4800000:  220:    }
+ 11400000:  218:    for (i = card; i < state->deckCount[player]-1; i++) {
+  3700000:  219:      state->deck[player][i] = state->deck[player][i+1];
+  3700000:  220:    }
   2000000:  221:    state->deckCount[player]--;
         -:  222:  }
   4400000:  223:  for (i = 0; i < newDeckPos; i++) {
@@ -244,7 +244,7 @@ dominion.c:creating 'dominion.c.gcov'
   2000000:  226:  }
         -:  227:
    200000:  228:  return 0;
-   200224:  229:}
+   200186:  229:}
         -:  230:
         -:  231:int playCard(int handPos, int choice1, int choice2, int choice3, struct gameState *state)
         -:  232:{
@@ -548,34 +548,34 @@ dominion.c:creating 'dominion.c.gcov'
         -:  530:    //Step 1 Shuffle the discard pile back into a deck
         -:  531:    int i;
         -:  532:    //Move discard to deck
-      448:  533:    for (i = 0; i < state->discardCount[player];i++){
+      372:  533:    for (i = 0; i < state->discardCount[player];i++){
     #####:  534:      state->deck[player][i] = state->discard[player][i];
     #####:  535:      state->discard[player][i] = -1;
     #####:  536:    }
         -:  537:
-      224:  538:    state->deckCount[player] = state->discardCount[player];
-      224:  539:    state->discardCount[player] = 0;//Reset discard
+      186:  538:    state->deckCount[player] = state->discardCount[player];
+      186:  539:    state->discardCount[player] = 0;//Reset discard
         -:  540:
         -:  541:    //Shufffle the deck
-      224:  542:    shuffle(player, state);//Shuffle the deck up and make it so that we can draw
+      186:  542:    shuffle(player, state);//Shuffle the deck up and make it so that we can draw
         -:  543:
         -:  544:    if (DEBUG){//Debug statements
         -:  545:      printf("Deck count now: %d\n", state->deckCount[player]);
         -:  546:    }
         -:  547:
-      224:  548:    state->discardCount[player] = 0;
+      186:  548:    state->discardCount[player] = 0;
         -:  549:
         -:  550:    //Step 2 Draw Card
-      224:  551:    count = state->handCount[player];//Get current player's hand count
+      186:  551:    count = state->handCount[player];//Get current player's hand count
         -:  552:
         -:  553:    if (DEBUG){//Debug statements
         -:  554:      printf("Current hand count: %d\n", count);
         -:  555:    }
         -:  556:
-      224:  557:    deckCounter = state->deckCount[player];//Create a holder for the deck count
+      186:  557:    deckCounter = state->deckCount[player];//Create a holder for the deck count
         -:  558:
-      224:  559:    if (deckCounter == 0)
-      224:  560:      return -1;
+      186:  559:    if (deckCounter == 0)
+      186:  560:      return -1;
         -:  561:
     #####:  562:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
     #####:  563:    state->deckCount[player]--;
@@ -583,19 +583,19 @@ dominion.c:creating 'dominion.c.gcov'
     #####:  565:  }
         -:  566:
         -:  567:  else{
-   599776:  568:    int count = state->handCount[player];//Get current hand count for player
+   599814:  568:    int count = state->handCount[player];//Get current hand count for player
         -:  569:    int deckCounter;
         -:  570:    if (DEBUG){//Debug statements
         -:  571:      printf("Current hand count: %d\n", count);
         -:  572:    }
         -:  573:
-   599776:  574:    deckCounter = state->deckCount[player];//Create holder for the deck count
-   599776:  575:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
-   599776:  576:    state->deckCount[player]--;
-   599776:  577:    state->handCount[player]++;//Increment hand count
+   599814:  574:    deckCounter = state->deckCount[player];//Create holder for the deck count
+   599814:  575:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
+   599814:  576:    state->deckCount[player]--;
+   599814:  577:    state->handCount[player]++;//Increment hand count
         -:  578:  }
         -:  579:
-   599776:  580:  return 0;
+   599814:  580:  return 0;
    600000:  581:}
         -:  582:
         -:  583:int getCost(int cardNumber)
@@ -1250,13 +1250,13 @@ dominion.c:creating 'dominion.c.gcov'
         -: 1232:    {
    500000: 1233:      if (state->hand[player][i] == copper)
         -: 1234:	{
-   400000: 1235:	  state->coins += 1;
-   400000: 1236:	}
-   100000: 1237:      else if (state->hand[player][i] == silver)
+   300000: 1235:	  state->coins += 1;
+   300000: 1236:	}
+   200000: 1237:      else if (state->hand[player][i] == silver)
         -: 1238:	{
     #####: 1239:	  state->coins += 2;
     #####: 1240:	}
-   100000: 1241:      else if (state->hand[player][i] == gold)
+   200000: 1241:      else if (state->hand[player][i] == gold)
         -: 1242:	{
     #####: 1243:	  state->coins += 3;
     #####: 1244:	}
