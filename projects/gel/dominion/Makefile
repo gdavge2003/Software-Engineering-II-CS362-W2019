@@ -53,13 +53,15 @@ randomtests: randomtestcard1.c randomtestcard2.c randomtestadventurer.c dominion
 
 runrandomtests:
 	make randomtests
-	./randomtestcard1 >> randomtestresults.out
-	./randomtestcard2 >> randomtestresults.out
-	./randomtestadventurer >> randomtestresults.out
-	gcov dominion.c >> randomtestresults.out
-	cat dominion.c.gcov >> randomtestresults.out
-	gcov -b dominion.c >> randomtestresults.out
-	cat dominion.c.gcov >> randomtestresults.out
+	./randomtestcard1 >> randomtestcard1.out
+	gcov dominion.c >> randomtestcard1.out
+	cat dominion.c.gcov >> randomtestcard1.out
+	./randomtestcard2 >> randomtestcard2.out
+	gcov dominion.c >> randomtestcard2.out
+	cat dominion.c.gcov >> randomtestcard2.out
+	./randomtestadventurer >> randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
 
 randomtestresults:
 	rm -f randomtestresults.out
