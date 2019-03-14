@@ -1,5 +1,9 @@
-
-
+/*
+ * Winter 2019 - CS362 - Final Project Part B
+ * Matthew Solbrack, solbracm@oregonstate.edu
+ * Sung Hyun Pak, paks@oregonstate.edu
+ * Linge Ge, gel@oregonstate.edu 
+ */
 import junit.framework.TestCase;
 
 //You can use this as a skeleton for your 3 different test approach
