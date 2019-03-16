@@ -1,0 +1,226 @@
+
+** Unit Testing for updateCoins() **
+
+** Test 1: correctly resets & no coins **
+Expected coins: 0, Actual coins: 0
+TEST PASSED
+
+** Test 2: coins and bonus correctly calculated **
+Expected coins: 11, Actual coins: 11
+TEST PASSED
+
+** Test 3: multiple iterations on same coin correctly calculated **
+Expected coins: 9, Actual coins: 9
+TEST PASSED
+
+** Test 4: hand size should remain the same **
+Expected coins: 3, Actual coins: 3
+TEST PASSED
+Expected hand size: 3, Actual hand size: 3
+TEST PASSED
+
+** Unit Testing for isGameOver() **
+
+** Test 1: game ends w/ no Provinces **
+Expected game result: 1, Actual game result: 1
+TEST PASSED
+
+** Test 2: game continues with 1 Province remaining **
+Expected game result: 0, Actual game result: 0
+TEST PASSED
+
+** Test 3: game ends w/ 3 empty supply piles **
+Expected game result: 1, Actual game result: 1
+TEST PASSED
+
+** Test 4: game continues with 2 supply piles empty **
+Expected game result: 0, Actual game result: 0
+TEST PASSED
+
+** Test 5: game continues with 0 supply piles empty **
+Expected game result: 0, Actual game result: 0
+TEST PASSED
+
+** Unit Testing for whoseTurn() **
+
+** Test 1: returns correct value in state **
+Expected whoseTurn: 0, Actual whoseTurn result: 0
+TEST PASSED
+
+** Unit Testing for kingdomCards() **
+
+** Test 1: kingdom cards stored correctly **
+Expected card id: 7, Actual card id: 7
+TEST PASSED
+Expected card id: 13, Actual card id: 13
+TEST PASSED
+Expected card id: 8, Actual card id: 8
+TEST PASSED
+Expected card id: 9, Actual card id: 9
+TEST PASSED
+Expected card id: 10, Actual card id: 10
+TEST PASSED
+Expected card id: 11, Actual card id: 11
+TEST PASSED
+Expected card id: 14, Actual card id: 14
+TEST PASSED
+Expected card id: 20, Actual card id: 20
+TEST PASSED
+Expected card id: 25, Actual card id: 25
+TEST PASSED
+Expected card id: 24, Actual card id: 24
+TEST PASSED
+
+Card Test Suite for Smithy
+
+** Test 1: function returns correct value **
+Expected result: 0. Actual result: 0
+TEST PASSED
+
+** Test 2: player draws 3 cards to hand and discards played card **
+Expected hand size: 8. Actual hand size: 9
+TEST FAILED
+
+** Test 3: player draws 3 cards from deck **
+Expected deck size: 2. Actual deck size: 1
+TEST FAILED
+
+** Test 4: player's discard pile now has played card **
+Expected discard size: 1. Actual discard size: 0
+TEST FAILED
+
+** Test 5: kingdom cards are not affected **
+Kingdom card #7 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #13 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #10 expected count: 8. Actual count: 8
+TEST PASSED
+Kingdom card #19 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #8 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #21 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #11 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #22 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #14 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #25 expected count: 10. Actual count: 10
+TEST PASSED
+
+** Test 6: opponent state does not change **
+Expected opponent hand size: 0. Actual hand size: 0
+TEST PASSED
+Expected opponent deck size: 10. Actual deck size: 10
+TEST PASSED
+Expected opponent discard size: 0. Actual discard size: 0
+TEST PASSED
+
+Card Test Suite for Village
+
+** Test 1: function returns correct value **
+Expected result: 0. Actual result: 0
+TEST PASSED
+
+** Test 2: player draws 1 card to hand and discards played card **
+Expected hand size: 6. Actual hand size: 6
+TEST PASSED
+
+** Test 3: player draws 1 card from deck **
+Expected deck size: 4. Actual deck size: 4
+TEST PASSED
+
+** Test 4: player discard pile now has played card **
+Expected discard size: 1. Actual discard size: 0
+TEST FAILED
+
+** Test 5: player gains 2 actions **
+Expected player action(s): 3. Actual action(s): 23
+TEST FAILED
+
+** Test 6: kingdom cards are not affected **
+Kingdom card #7 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #13 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #10 expected count: 8. Actual count: 8
+TEST PASSED
+Kingdom card #19 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #8 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #21 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #11 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #22 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #14 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #25 expected count: 10. Actual count: 10
+TEST PASSED
+
+** Test 7: opponent state does not change **
+Expected opponent hand size: 0. Actual hand size: 0
+TEST PASSED
+Expected opponent deck size: 10. Actual deck size: 10
+TEST PASSED
+Expected opponent discard size: 0. Actual discard size: 0
+TEST PASSED
+
+Card Test Suite for Council Room
+
+** Test 1: function returns correct value **
+Expected result: 0. Actual result: 0
+TEST PASSED
+
+** Test 2: player draws 4 card to hand and discards played card **
+Expected hand size: 9. Actual hand size: 9
+TEST PASSED
+
+** Test 3: player draws 4 card from deck **
+Expected deck size: 1. Actual deck size: 1
+TEST PASSED
+
+** Test 4: player discard pile now has played card **
+Expected discard size: 1. Actual discard size: 0
+TEST FAILED
+
+** Test 5: player gains a buy **
+Expected player buy(s): 2. Actual buy(s): 2
+TEST PASSED
+
+** Test 6: kingdom cards are not affected **
+Kingdom card #7 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #13 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #10 expected count: 8. Actual count: 8
+TEST PASSED
+Kingdom card #19 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #8 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #21 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #11 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #22 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #14 expected count: 10. Actual count: 10
+TEST PASSED
+Kingdom card #25 expected count: 10. Actual count: 10
+TEST PASSED
+
+** Test 7: opponent draws a card and state changes **
+Expected opponent hand size: 1. Actual hand size: 1
+TEST PASSED
+Expected opponent deck size: 9. Actual deck size: 9
+TEST PASSED
+
+** Test 8: opponent does not discard any card **
+Expected opponent discard size: 0. Actual discard size: 0
+TEST PASSED
