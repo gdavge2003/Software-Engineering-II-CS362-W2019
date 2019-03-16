@@ -76,7 +76,7 @@ int main() {
         }
 
         // action
-        cardEffect(smithy, 0, 0, 0, state, handPos, 0);
+        cardEffect(adventurer, 0, 0, 0, state, handPos, 0);
 
         // record state after action is played
         deckAfter = state->deckCount[0];
